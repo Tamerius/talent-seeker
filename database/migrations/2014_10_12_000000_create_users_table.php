@@ -18,6 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('notes');
+            $table->date('dateOfBirth');
+            $table->string('daysAvailable');
+            $table->string('hired');
+            $table->integer('yearsExperience');
+            $table->integer('profileViews');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -32,4 +38,4 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
-}
+} 
