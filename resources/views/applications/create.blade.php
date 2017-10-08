@@ -39,6 +39,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('yearsExperience') ? ' has-error' : '' }}">
+                            <label for="yearsExperience" class="col-md-4 control-label">Years of experience</label>
+
+                            <div class="col-md-6">
+                                <input id="yearsExperience" type="number" min="0" class="form-control" name="yearsExperience">
+
+                                @if ($errors->has('yearsExperience'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('yearsExperience') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -72,6 +86,20 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('notes') ? ' has-error' : '' }}">
+                            <label for="notes" class="col-md-4 control-label">Notes</label>
+
+                            <div class="col-md-6">
+                                <textarea id="notes" class="form-control" name="notes"></textarea>
+
+                                @if ($errors->has('notes'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('notes') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

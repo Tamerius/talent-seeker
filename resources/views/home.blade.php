@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Overview</div>
+                <div class="panel-heading">Applications overview</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -21,7 +21,13 @@
                                     {{ $application->name }}
                                 </div>
                                 <div class="panel-body">
-                                    {{ $application->yearsExperience }} years experience as {{ $application->position }}
+                                    @if ($application->yearsExperience == 0)
+                                        No experience yet.
+                                    @elseif ($application->yearsExperience == 1)
+                                        {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
+                                    @else
+                                        {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
+                                    @endif
                                 </div>
                             </div>
                         </div>
