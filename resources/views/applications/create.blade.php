@@ -25,6 +25,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+                            <label for="position" class="col-md-4 control-label">Job position</label>
+
+                            <div class="col-md-6">
+                                <input id="position" type="position" class="form-control" name="position" required>
+
+                                @if ($errors->has('position'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('position') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

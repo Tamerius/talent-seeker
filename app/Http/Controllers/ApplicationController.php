@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Application;
 
 class ApplicationController extends Controller
 {
@@ -13,7 +14,7 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,7 +35,10 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+       Application::create($request->all());
+
+       $applications = Application::all();
+       return view('/home', compact('applications'));
     }
 
     /**
