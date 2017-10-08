@@ -27,6 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = [
+        'dateOfBirth',
+    ];
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucfirst($value);
