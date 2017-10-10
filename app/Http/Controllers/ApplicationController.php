@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application;
+use App\User;
 
 class ApplicationController extends Controller
 {
@@ -35,21 +36,31 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-       Application::create($request->all());
+        $application = Application::create($request->all());
 
-       $applications = Application::all();
-       return view('/home', compact('applications'));
+        // if the given email is new, create user
+        if (!User::where('email', $request->email)->first())
+        {
+            $user = User::create($request->all());
+            $user['password'] = bcrypt($request['password']);
+            // TODO add remember token?
+        }
+        $application->user_id = $user->id;
+
+        $applications = Application::all();
+        return view('/home', compact('applications'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($email)
     {
-        //
+        $application = Application::where('email', $email)->first();
+        return view('/applications/show', compact('application'));
     }
 
     /**

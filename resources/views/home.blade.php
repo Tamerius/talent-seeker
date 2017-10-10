@@ -18,16 +18,18 @@
                         <div class="col-md-6 col-md-offset-3">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    {{ $application->name }}
+                                    <a href="/applications/{{ $application->email }}">{{ $application->name }}</a>
                                 </div>
                                 <div class="panel-body">
-                                    @if ($application->yearsExperience == 0)
-                                        No experience yet.
-                                    @elseif ($application->yearsExperience == 1)
-                                        {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
-                                    @else
-                                        {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
-                                    @endif
+                                    <p>
+                                        @if ($application->yearsExperience == 0)
+                                            No experience yet.
+                                        @elseif ($application->yearsExperience == 1)
+                                            {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
+                                        @else
+                                            {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>

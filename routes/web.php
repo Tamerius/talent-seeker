@@ -21,6 +21,6 @@ Route::post('users', ['uses' => 'UsersController@store']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile/{username}', 'ProfileController@profile');
+Route::get('/profiles/{username}', 'ProfileController@profile');
 
 Route::resource('/applications', 'ApplicationController');
