@@ -14,34 +14,64 @@
                         </div>
                     @endif
 
-                    @forelse ($applications as $application)
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a href="/applications/{{ $application->email }}">{{ $application->name }}</a>
-                                </div>
-                                <div class="panel-body">
-                                    <p>
-                                        @if ($application->yearsExperience == 0)
-                                            No experience yet.
-                                        @elseif ($application->yearsExperience == 1)
-                                            {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
-                                        @else
-                                            {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
-                                        @endif
-                                    </p>
+                    @if (Auth::user()->admin == 1)
+                        @forelse ($applications as $application)
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a href="/applications/{{ $application->id }}">
+                                                {{ $application->name }} for the position of {{ $application->position }}.
+                                            </a>
+                                            <!-- <select list="statuses" name="statuses" class="pull-right">
+                                                <option name="pending">Pending</option>
+                                                <option name="hired">Hired</option>
+                                                <option name="dismissed">Dismissed</option>
+                                            </select> -->
+                                        </div>
+                                    <div class="panel-body">
+                                        <p>
+                                            @if ($application->yearsExperience == 0)
+                                                No experience yet.
+                                            @elseif ($application->yearsExperience == 1)
+                                                {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
+                                            @else
+                                                {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
+                                            @endif
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <div class="col-md-12">
-                            No applications yet.
-                        </div>
-                    @endforelse
+                        @empty
+                            <div class="col-md-12">
+                                No applications yet.
+                            </div>
+                        @endforelse
 
-                    <div class="col-md-12 text-center">
-                        <a href="/applications/create" class="btn btn-success">Start new application</a>
-                    </div>
+                        <div class="col-md-12 text-center">
+                            <a href="/applications/create" class="btn btn-primary">New</a>
+                        </div>
+                    @else
+                        @forelse ($applications as $application)
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a href="/applications/{{ $application->id }}">
+                                                {{ $application->position }}
+                                            </a>
+                                        </div>
+                                    <div class="panel-body">
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-md-12">
+                                No applications yet.
+                            </div>
+                        @endforelse                        
+                    @endif
                 </div>
             </div>
         </div>

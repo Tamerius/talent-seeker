@@ -18,14 +18,11 @@ class CreateApplicationsTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('name');
             $table->string('position');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->string('notes')->nullable();
-            $table->date('dateOfBirth')->nullable();
-            $table->integer('daysAvailable')->default(5);
-            $table->string('hired')->default('undefined');
-            $table->integer('yearsExperience')->default(0);
-            $table->integer('views')->default(0);
+            $table->integer('daysAvailable')->default(5)->nullable();
+            $table->string('hired')->default('undefined')->nullable();
+            $table->integer('yearsExperience')->default(0)->nullable();
+            $table->integer('views')->default(0)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

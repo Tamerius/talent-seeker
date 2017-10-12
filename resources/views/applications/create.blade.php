@@ -39,11 +39,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('daysAvailable') ? ' has-error' : '' }}">
+                            <label for="daysAvailable" class="col-md-4 control-label">Days available per week</label>
+
+                            <div class="col-md-6">
+                                <input id="daysAvailable" type="number" min="1" max="5" class="form-control" name="daysAvailable" value="5" required>
+
+                                @if ($errors->has('daysAvailable'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('daysAvailable') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('yearsExperience') ? ' has-error' : '' }}">
                             <label for="yearsExperience" class="col-md-4 control-label">Years of experience</label>
 
                             <div class="col-md-6">
-                                <input id="yearsExperience" type="number" min="0" class="form-control" name="yearsExperience">
+                                <input id="yearsExperience" type="number" min="0" class="form-control" name="yearsExperience" value="0" required>
 
                                 @if ($errors->has('yearsExperience'))
                                     <span class="help-block">
@@ -54,7 +68,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-mail Address</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" required>

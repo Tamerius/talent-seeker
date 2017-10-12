@@ -8,11 +8,12 @@
 			<div class="panel-body text-center">
 				<h1>{{ $application->name }}</h1>
 				<h5>{{ $application->email }}</h5>
-				<ul>
-					<li>Years of experience: {{ $application->yearsExperience }}</li>
-				</ul>
+				<div>Years of experience: {{ $application->yearsExperience }}</div>
 
-				<button class="btn btn-success">Hire</button>
+				<a href="/home" class="btn btn-primary">Back to overview</a>
+				@if (Auth::user()->admin == 1)
+					<button class="btn btn-success">Hire!</button>
+				@endif
 			</div>
 		</div>
 	</div>

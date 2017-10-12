@@ -13,22 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
-                $table->increments('id');
-                $table->boolean('admin')->default(false);
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->string('password');
-                $table->string('notes')->default('');
-                $table->date('dateOfBirth')->nullable();
-                $table->integer('daysAvailable')->default(5);
-                $table->string('hired')->default('undefined');
-                $table->integer('yearsExperience')->default(0);
-                $table->rememberToken();
-                $table->timestamps();
-            });
-        }
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->boolean('admin')->default(true);
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->date('dateOfBirth')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**

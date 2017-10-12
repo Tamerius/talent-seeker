@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $applications = Application::all();
-        
+        $applications = Auth::user()->admin == 1
+            ? $applications = Application::all()
+            : $applications = Application::where('user_id', Auth::user()->id)->get();
+
         return view('home', compact('applications'));
     }
 }
