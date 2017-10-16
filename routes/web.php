@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('users', ['uses' => 'UsersController@index']);
 Route::get('users/create', ['uses' => 'UsersController@create']);
@@ -21,6 +19,7 @@ Route::post('users', ['uses' => 'UsersController@store']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', ['uses' => 'HomeController@index']);
 Route::get('/profiles/{username}', 'ProfileController@profile');
 
 Route::resource('/applications', 'ApplicationController');

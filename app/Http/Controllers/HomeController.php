@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // TODO add filter
         $applications = Auth::user()->admin == 1
             ? $applications = Application::all()
             : $applications = Application::where('user_id', Auth::user()->id)->get();

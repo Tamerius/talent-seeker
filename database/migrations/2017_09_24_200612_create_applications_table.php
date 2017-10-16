@@ -19,8 +19,9 @@ class CreateApplicationsTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('notes')->nullable();
+            $table->string('message')->nullable();
             $table->integer('daysAvailable')->default(5)->nullable();
-            $table->string('hired')->default('undefined')->nullable();
+            $table->string('hired')->default('pending')->nullable();
             $table->integer('yearsExperience')->default(0)->nullable();
             $table->integer('views')->default(0)->nullable();
             $table->rememberToken();

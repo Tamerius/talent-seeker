@@ -8,6 +8,9 @@
                 <div class="panel-heading">Applications overview</div>
 
                 <div class="panel-body">
+                    <form action="/home" type="POST" class="col-md-6 col-md-offset-3">
+                        <input type="submit" value="Filter" />
+                    </form>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -18,16 +21,11 @@
                         @forelse ($applications as $application)
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <a href="/applications/{{ $application->id }}">
-                                                {{ $application->name }} for the position of {{ $application->position }}.
-                                            </a>
-                                            <!-- <select list="statuses" name="statuses" class="pull-right">
-                                                <option name="pending">Pending</option>
-                                                <option name="hired">Hired</option>
-                                                <option name="dismissed">Dismissed</option>
-                                            </select> -->
-                                        </div>
+                                    <div class="panel-heading">
+                                        <a href="/applications/{{ $application->id }}">
+                                            {{ $application->name }} for the position of {{ $application->position }}.
+                                        </a>
+                                    </div>
                                     <div class="panel-body">
                                         <p>
                                             @if ($application->yearsExperience == 0)
@@ -61,7 +59,7 @@
                                         </div>
                                     <div class="panel-body">
                                         <p>
-
+                                            Current status: {{ $application->hired }}
                                         </p>
                                     </div>
                                 </div>
