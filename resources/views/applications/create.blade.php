@@ -119,6 +119,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <a href="/home" class="btn btn-primary">Back to overview</a>
                                 <button type="submit" class="btn btn-primary">
                                     Save
                                 </button>

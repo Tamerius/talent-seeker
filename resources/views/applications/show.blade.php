@@ -6,13 +6,14 @@
 	<div class="col-md-6 col-md-offset-3">
 		<div class="panel panel-default">
 			<div class="panel-body text-center">
-				<h1>View or edit {{ $application->name }}</h1>
+				<h1>{{ $application->name }}</h1>
 				
 				@if (Auth::user()->admin == 1)
 					<form class="form-horizontal" method="POST" action="/applications">
 					    {{ csrf_field() }}
 
 					    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+					    	<input type="hidden" name="id" value="{{ $application->id }}" />
 					        <label for="name" class="col-md-4 control-label">Name</label>
 
 					        <div class="col-md-6">
@@ -72,9 +73,7 @@
 					        <label for="notes" class="col-md-4 control-label">Notes</label>
 
 					        <div class="col-md-6">
-					            <textarea id="notes" class="form-control" name="notes">
-					            	{{ $application->notes }}
-					            </textarea>
+					            <textarea id="notes" class="form-control" name="notes">{{ $application->notes }}</textarea>
 
 					            @if ($errors->has('notes'))
 					                <span class="help-block">

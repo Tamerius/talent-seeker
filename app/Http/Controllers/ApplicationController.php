@@ -35,32 +35,41 @@ class ApplicationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Save a new or existing application.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $application = Application::create($request->all());
-
-        if (User::where('email', $request->email)->first())
+        if (Application::where('id', $request->id)->first())
         {
-            // known user
-            $user = User::where('email', $request->email)->first();
+            // edit
+            $this->update($request, $request->id);
         }
-        else {
-            // new user
-            $user = User::create($request->all());
-            $user->admin = false;
-            $user->save();
-        }
+        else
+        {
+            // create
+            $application = Application::create($request->all());
 
-        $application->user_id = $user->id;
-        $application->save();
+            if (User::where('email', $request->email)->first())
+            {
+                // known user
+                $user = User::where('email', $request->email)->first();
+            }
+            else {
+                // new user
+                $user = User::create($request->all());
+                $user->admin = false;
+                $user->save();
+            }
+
+            $application->user_id = $user->id;
+            $application->save();
+        }
 
         $applications = Application::all();
-        return view('/home', compact('applications'));
+        return redirect('/home');
     }
 
     /**
@@ -106,11 +115,15 @@ class ApplicationController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function update(Request $request, $id)
     {
-        //
+        $application = Application::where('id', $request->id);
+
+        $application->update($request->except('_token'));
+
+        return;
     }
 
     /**
