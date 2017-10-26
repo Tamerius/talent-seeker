@@ -16,4 +16,9 @@ class Application extends Model
         'views',
         'yearsExperience'
     ];
+
+    public function setHiredAttribute($value)
+    {
+        $this->attributes['hired'] = ucfirst($value);
+    }
 }

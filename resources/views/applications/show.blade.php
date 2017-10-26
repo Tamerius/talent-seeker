@@ -83,17 +83,56 @@
 					        </div>
 					    </div>
 
-					    <div class="form-group">
-					        <div class="col-md-6 col-md-offset-4">
-					            <button type="submit" class="btn btn-primary">
-					                Save
-					            </button>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-4">
+								<button type="submit" class="btn btn-primary">
+									Save
+								</button>
+								@if ($application->hired == "pending" || $application->hired == "dismissed")
+									<button class="btn btn-success">
+										Hire!
+									</button>
+								@endif
+								@if ($application->hired == 'pending' || $application->hired == 'hired')
+									<button class="btn btn-danger">
+										Dismiss
+									</button>
+								@endif
 					        </div>
 					    </div>
 					</form>
-					<button class="btn btn-success">Hire!</button>
+				@else
+					<p>This is the overview page for your job application.</p>
+					<table class="col-md-6 col-md-offset-3">
+						<tr>
+							<td>Naam</td>
+							<td>{{ $application->name }}</td>
+						</tr>
+						<tr>
+							<td>Position</td>
+							<td>{{ $application->position }}</td>
+						</tr>
+						<tr>
+							<td>Weekdays available</td>
+							<td>{{ $application->daysAvailable }}</td>
+						</tr>
+						<tr>
+							<td>Years of experience</td>
+							<td>{{ $application->yearsExperience }}</td>
+						</tr>
+						<tr>
+							<td>Page views</td>
+							<td>{{ $application->views }}</td>
+						</tr>
+						<tr>
+							<td>Status</td>
+							<td>{{ $application->hired }}</td>
+						</tr>
+					</table>
 				@endif
-				<a href="/home" class="btn btn-primary">Back to overview</a>
+				<div class="col-md-6">
+					<a href="/home" class="btn btn-primary">Back to overview</a>
+				</div>
 			</div>
 		</div>
 	</div>
