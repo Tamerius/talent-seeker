@@ -88,16 +88,6 @@
 								<button type="submit" class="btn btn-primary">
 									Save
 								</button>
-								@if ($application->hired == "pending" || $application->hired == "dismissed")
-									<button class="btn btn-success">
-										Hire!
-									</button>
-								@endif
-								@if ($application->hired == 'pending' || $application->hired == 'hired')
-									<button class="btn btn-danger">
-										Dismiss
-									</button>
-								@endif
 					        </div>
 					    </div>
 					</form>
@@ -130,9 +120,19 @@
 						</tr>
 					</table>
 				@endif
-				<div class="col-md-6">
-					<a href="/home" class="btn btn-primary">Back to overview</a>
-				</div>
+				
+					<a href="/home" class="btn btn-secundary">Back to overview</a>
+				
+				@if (Auth::user()->admin == 1 && ($application->hired == "pending" || $application->hired == "dismissed"))
+					<button class="btn btn-success">
+						Hire!
+					</button>
+				@endif
+				@if (Auth::user()->admin == 1 && ($application->hired == 'pending' || $application->hired == 'hired'))
+					<button class="btn btn-danger">
+						Dismiss
+					</button>
+				@endif
 			</div>
 		</div>
 	</div>

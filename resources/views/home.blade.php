@@ -28,13 +28,12 @@
                                     </div>
                                     <div class="panel-body">
                                         <p>
-                                            @if ($application->yearsExperience == 0)
-                                                No experience yet.
-                                            @elseif ($application->yearsExperience == 1)
-                                                {{ $application->yearsExperience }} year of experience as {{ $application->position }}.
-                                            @else
-                                                {{ $application->yearsExperience }} years of experience as {{ $application->position }}.
-                                            @endif
+                                            {{ $application->notesShort }}
+                                        </p>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <p>
+                                            {{ $application->experienceDescription }}
                                         </p>
                                     </div>
                                 </div>
@@ -60,6 +59,13 @@
                                     <div class="panel-body">
                                         <p>
                                             Current status: {{ $application->hired }}
+                                            @if ($application->hired == 'hired')
+                                                <i class="fa fa-clock-handshake-o pull-right"></i>
+                                            @elseif ($application->hired == 'dismissed')
+                                                <i class="fa fa-times pull-right"></i>
+                                            @else
+                                                <i class="fa fa-clock-o pull-right"></i>
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
