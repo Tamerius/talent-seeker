@@ -62,12 +62,19 @@
                     <h3 class="text-center">Applications</h3>
                     @if (Auth::user()->admin == 1)
                         @forelse ($applications as $application)
-                            <div class="col-md-6 col-md-offset-3">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <a href="/applications/{{ $application->id }}">
                                             {{ $application->name }} for the position of {{ $application->position }}.
                                         </a>
+                                        @if ($application->hired == 'hired')
+                                            <i class="fa fa-handshake-o pull-right"></i>
+                                        @elseif ($application->hired == 'dismissed')
+                                            <i class="fa fa-times pull-right"></i>
+                                        @else
+                                            <i class="fa fa-clock-o pull-right"></i>
+                                        @endif
                                     </div>
                                     <div class="panel-body">
                                         <p>
@@ -103,7 +110,7 @@
                                         <p>
                                             Current status: {{ $application->hired }}
                                             @if ($application->hired == 'hired')
-                                                <i class="fa fa-clock-handshake-o pull-right"></i>
+                                                <i class="fa fa-handshake-o pull-right"></i>
                                             @elseif ($application->hired == 'dismissed')
                                                 <i class="fa fa-times pull-right"></i>
                                             @else
@@ -119,6 +126,12 @@
                             </div>
                         @endforelse                        
                     @endif
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        {{ $applications->links() }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -45,7 +45,7 @@ class HomeController extends Controller
             $filter = array_merge($filter, [['user_id', '=', Auth::user()->id]]);
         }
 
-        $applications = Application::where($filter)->get();
+        $applications = Application::where($filter)->paginate(4);
 
         return view('home', compact('applications', 'request'));
     }

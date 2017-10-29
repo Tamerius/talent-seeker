@@ -45,7 +45,7 @@
 					        <label for="daysAvailable" class="col-md-4 control-label">Days available per week</label>
 
 					        <div class="col-md-6">
-					            <input id="daysAvailable" type="number" min="1" max="5" class="form-control" name="daysAvailable" value="{{ $application->daysAvailable }}" required>
+					            <input id="daysAvailable" type="number" min="1" max="7" class="form-control" name="daysAvailable" value="{{ $application->daysAvailable }}" required>
 
 					            @if ($errors->has('daysAvailable'))
 					                <span class="help-block">
