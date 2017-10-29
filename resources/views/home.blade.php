@@ -146,12 +146,6 @@
                         @endforelse                        
                     @endif
                 </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4 text-center">
-                        {{ $applications->links() }}
-                    </div>
-                </div>
             </div>
         </div>
     </div>
