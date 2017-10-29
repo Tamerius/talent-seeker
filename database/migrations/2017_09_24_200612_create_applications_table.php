@@ -25,6 +25,7 @@ class CreateApplicationsTable extends Migration
             $table->integer('yearsExperience')->default(0)->nullable();
             $table->integer('views')->default(0)->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

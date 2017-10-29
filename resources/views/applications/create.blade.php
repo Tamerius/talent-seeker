@@ -43,7 +43,7 @@
                             <label for="daysAvailable" class="col-md-4 control-label">Days available per week</label>
 
                             <div class="col-md-6">
-                                <input id="daysAvailable" type="number" min="1" max="5" class="form-control" name="daysAvailable" value="5" required>
+                                <input id="daysAvailable" type="number" min="1" max="7" class="form-control" name="daysAvailable" value="5" required>
 
                                 @if ($errors->has('daysAvailable'))
                                     <span class="help-block">
@@ -71,7 +71,7 @@
                             <label for="email" class="col-md-4 control-label">E-mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" required>
+                                <input id="email" type="email" class="form-control" name="email" required autocomplete="off">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -92,14 +92,6 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 

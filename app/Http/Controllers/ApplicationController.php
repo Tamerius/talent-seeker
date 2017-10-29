@@ -134,6 +134,9 @@ class ApplicationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $application = Application::findOrFail($id);
+        $application->delete();
+
+        return redirect('home');
     }
 }

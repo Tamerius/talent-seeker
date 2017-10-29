@@ -84,12 +84,42 @@
 					    </div>
 
 						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Save
-								</button>
-					        </div>
-					    </div>
+							<div class="input-group col-md-4 col-md-offset-4">
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-primary">
+										Save
+									</button>
+								</div>
+								<div class="input-group-btn">
+									@if (Auth::user()->admin == 1 && ($application->hired == "pending" || $application->hired == "dismissed"))
+										<form action="" method="POST">
+											<button class="btn btn-success">
+												Hire											</button>
+										</form>
+									@endif
+								</div>
+								<div class="input-group-btn">
+									@if (Auth::user()->admin == 1 && ($application->hired == 'pending' || $application->hired == 'hired'))
+										<form action="" method="POST">
+											<button class="btn btn-danger">
+												Dismiss
+											</button>
+										</form>
+									@endif
+								</div>
+								<div class="input-group-btn">
+									@if (Auth::user()->admin == 1 || $application->user_id == Auth::id())
+										<form action="/applications/{{ $application->id }}" method="POST">
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
+											<button class="btn btn-warning">
+												Delete
+											</button>
+										</form>
+									@endif
+								</div>
+							</div>
+				        </div>
 					</form>
 				@else
 					<p>This is the overview page for your job application.</p>
@@ -120,19 +150,9 @@
 						</tr>
 					</table>
 				@endif
-				
-					<a href="/home" class="btn btn-secundary">Back to overview</a>
-				
-				@if (Auth::user()->admin == 1 && ($application->hired == "pending" || $application->hired == "dismissed"))
-					<button class="btn btn-success">
-						Hire!
-					</button>
-				@endif
-				@if (Auth::user()->admin == 1 && ($application->hired == 'pending' || $application->hired == 'hired'))
-					<button class="btn btn-danger">
-						Dismiss
-					</button>
-				@endif
+				<div class="col-md-6">
+					<a href="/home" class="btn btn-link">Back to overview</a>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::post('/', 'HomeController@index');
 
 Route::get('users', ['uses' => 'UsersController@index']);
 Route::get('users/create', ['uses' => 'UsersController@create']);

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Application extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'name',
@@ -15,6 +18,10 @@ class Application extends Model
         'hired',
         'views',
         'yearsExperience'
+    ];
+
+    protected $dates = [
+        'deleted_at'
     ];
 
     public function setHiredAttribute($value)
