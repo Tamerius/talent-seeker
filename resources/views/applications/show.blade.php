@@ -83,40 +83,30 @@
 					        </div>
 					    </div>
 
+					    <div class="form-group{{ $errors->has('hired') ? ' has-error' : '' }}">
+					        <label for="hired" class="col-md-4 control-label">Hired</label>
+
+					        <div class="col-md-6">
+					            <select id="hired" type="number" min="1" max="7" class="form-control" name="hired" value="{{ $application->hired }}" required>
+					            	<option value="pending" selected>Pending</option>
+					            	<option value="hired">Hired</option>
+					            	<option value="dismissed">Dismissed</option>
+					            </select>
+
+					            @if ($errors->has('hired'))
+					                <span class="help-block">
+					                    <strong>{{ $errors->first('hired') }}</strong>
+					                </span>
+					            @endif
+					        </div>
+					    </div>
+
 						<div class="form-group">
-							<div class="input-group col-md-4 col-md-offset-4">
+							<div class="input-group col-md-6 col-md-offset-4">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-primary">
 										Save
 									</button>
-								</div>
-								<div class="input-group-btn">
-									@if (Auth::user()->admin == 1 && ($application->hired == "pending" || $application->hired == "dismissed"))
-										<form action="" method="POST">
-											<button class="btn btn-success">
-												Hire											</button>
-										</form>
-									@endif
-								</div>
-								<div class="input-group-btn">
-									@if (Auth::user()->admin == 1 && ($application->hired == 'pending' || $application->hired == 'hired'))
-										<form action="" method="POST">
-											<button class="btn btn-danger">
-												Dismiss
-											</button>
-										</form>
-									@endif
-								</div>
-								<div class="input-group-btn">
-									@if (Auth::user()->admin == 1 || $application->user_id == Auth::id())
-										<form action="/applications/{{ $application->id }}" method="POST">
-											{{ csrf_field() }}
-											{{ method_field('DELETE') }}
-											<button class="btn btn-warning">
-												Delete
-											</button>
-										</form>
-									@endif
 								</div>
 							</div>
 				        </div>
@@ -150,8 +140,21 @@
 						</tr>
 					</table>
 				@endif
-				<div class="col-md-6">
-					<a href="/home" class="btn btn-link">Back to overview</a>
+				<div class="col-md-12">
+					<div class="col-md-2">
+						<a href="/home" class="btn btn-link">Back to overview</a>
+					</div>
+					<div class="col-md-10">
+						@if (Auth::user()->admin == 1 || $application->user_id == Auth::id())
+							<form action="/applications/{{ $application->id }}" method="POST">
+								{{ csrf_field() }}
+								{{ method_field('DELETE') }}
+								<button class="btn btn-danger pull-right">
+									Delete
+								</button>
+							</form>
+						@endif
+					</div>
 				</div>
 			</div>
 		</div>

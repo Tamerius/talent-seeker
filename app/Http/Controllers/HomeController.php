@@ -27,19 +27,33 @@ class HomeController extends Controller
     {
         $filter = [];
 
-        // weekdays available
+        // weekdays available filter
         if (isset($request['daysAvailable']) && $request['daysAvailable'] != null)
         {
             $filter = array_merge($filter, [['daysAvailable', '=', $request->daysAvailable]]);
         }
 
-        // years of experience
+        // years of experience filter
         if (isset($request['yearsExperience']) && $request['yearsExperience'] != null)
         {
             $filter = array_merge($filter, [['yearsExperience', '=', $request->yearsExperience]]);
         }
 
-        // non admin
+        // Hired filter
+        if (isset($request['hired']) && $request['hired'] != null)
+        {
+            if ($request['hired'] != 'all')
+            {
+                $filter = array_merge($filter, [['hired', '=', $request->hired]]);
+            }
+        }
+        else
+        {
+            // default
+            $filter = array_merge($filter, [['hired', '=', 'pending']]);
+        }
+
+        // non admin filter
         if (Auth::user()->admin == 0)
         {
             $filter = array_merge($filter, [['user_id', '=', Auth::user()->id]]);

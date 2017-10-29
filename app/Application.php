@@ -24,11 +24,6 @@ class Application extends Model
         'deleted_at'
     ];
 
-    public function setHiredAttribute($value)
-    {
-        $this->attributes['hired'] = ucfirst($value);
-    }
-
     public function getNotesShortAttribute($value)
     {
         if (strlen($this->notes) > 100)

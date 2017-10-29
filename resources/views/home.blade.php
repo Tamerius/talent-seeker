@@ -42,6 +42,25 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                                <label for="status" class="col-md-4 control-label">Status</label>
+
+                                <div class="col-md-6">
+                                    <select id="hired" type="number" min="1" max="7" class="form-control" name="hired" value="{{ $request['hired'] }}">
+                                        <option value="all"{{ isset($request['hired']) && $request['hired'] == 'all' ? ' selected' : '' }}>All</option>
+                                        <option value="pending"{{ isset($request['hired']) && $request['hired'] == 'pending' ? ' selected' : '' }}>Pending</option>
+                                        <option value="hired"{{ isset($request['hired']) && $request['hired'] == 'hired' ? ' selected' : '' }}>Hired</option>
+                                        <option value="dismissed"{{ isset($request['hired']) && $request['hired'] == 'dismissed' ? ' selected' : '' }}>Dismissed</option>
+                                    </select>
+
+                                    @if ($errors->has('status'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-4 col-md-offset-4 text-center">
                                     <button type="submit" class="btn btn-primary">
@@ -69,11 +88,11 @@
                                             {{ $application->name }} for the position of {{ $application->position }}.
                                         </a>
                                         @if ($application->hired == 'hired')
-                                            <i class="fa fa-handshake-o pull-right"></i>
+                                            <i class="fa fa-handshake-o pull-right" title="Hired"></i>
                                         @elseif ($application->hired == 'dismissed')
-                                            <i class="fa fa-times pull-right"></i>
+                                            <i class="fa fa-times pull-right" title="Dismissed"></i>
                                         @else
-                                            <i class="fa fa-clock-o pull-right"></i>
+                                            <i class="fa fa-clock-o pull-right" title="Pending"></i>
                                         @endif
                                     </div>
                                     <div class="panel-body">
@@ -110,11 +129,11 @@
                                         <p>
                                             Current status: {{ $application->hired }}
                                             @if ($application->hired == 'hired')
-                                                <i class="fa fa-handshake-o pull-right"></i>
+                                                <i class="fa fa-handshake-o pull-right" title="Hired"></i>
                                             @elseif ($application->hired == 'dismissed')
-                                                <i class="fa fa-times pull-right"></i>
+                                                <i class="fa fa-times pull-right" title="Dismissed"></i>
                                             @else
-                                                <i class="fa fa-clock-o pull-right"></i>
+                                                <i class="fa fa-clock-o pull-right" title="Pending"></i>
                                             @endif
                                         </p>
                                     </div>
